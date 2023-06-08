@@ -87,8 +87,7 @@ def plot_3d_pts(img, pts, center, calib_file=None, cam_to_img=None, relative=Fal
         cv2.circle(img, (point[0], point[1]), 3, color, thickness=-1)
 
 
-
-def plot_3d_box(img, cam_to_img, ry, dimension, center):
+def plot_3d_box(img, cam_to_img, ry, dimension, center, color):
 
 
 
@@ -104,19 +103,19 @@ def plot_3d_box(img, cam_to_img, ry, dimension, center):
         box_3d.append(point)
 
     #TODO put into loop
-    cv2.line(img, (box_3d[0][0], box_3d[0][1]), (box_3d[2][0],box_3d[2][1]), cv_colors.MINT.value, line_width)
-    cv2.line(img, (box_3d[4][0], box_3d[4][1]), (box_3d[6][0],box_3d[6][1]), cv_colors.MINT.value, line_width)
-    cv2.line(img, (box_3d[0][0], box_3d[0][1]), (box_3d[4][0],box_3d[4][1]), cv_colors.MINT.value, line_width)
-    cv2.line(img, (box_3d[2][0], box_3d[2][1]), (box_3d[6][0],box_3d[6][1]), cv_colors.MINT.value, line_width)
+    cv2.line(img, (box_3d[0][0], box_3d[0][1]), (box_3d[2][0],box_3d[2][1]), color, line_width)
+    cv2.line(img, (box_3d[4][0], box_3d[4][1]), (box_3d[6][0],box_3d[6][1]), color, line_width)
+    cv2.line(img, (box_3d[0][0], box_3d[0][1]), (box_3d[4][0],box_3d[4][1]), color, line_width)
+    cv2.line(img, (box_3d[2][0], box_3d[2][1]), (box_3d[6][0],box_3d[6][1]), color, line_width)
 
-    cv2.line(img, (box_3d[1][0], box_3d[1][1]), (box_3d[3][0],box_3d[3][1]), cv_colors.MINT.value, line_width)
-    cv2.line(img, (box_3d[1][0], box_3d[1][1]), (box_3d[5][0],box_3d[5][1]), cv_colors.MINT.value, line_width)
-    cv2.line(img, (box_3d[7][0], box_3d[7][1]), (box_3d[3][0],box_3d[3][1]), cv_colors.MINT.value, line_width)
-    cv2.line(img, (box_3d[7][0], box_3d[7][1]), (box_3d[5][0],box_3d[5][1]), cv_colors.MINT.value, line_width)
+    cv2.line(img, (box_3d[1][0], box_3d[1][1]), (box_3d[3][0],box_3d[3][1]), color, line_width)
+    cv2.line(img, (box_3d[1][0], box_3d[1][1]), (box_3d[5][0],box_3d[5][1]), color, line_width)
+    cv2.line(img, (box_3d[7][0], box_3d[7][1]), (box_3d[3][0],box_3d[3][1]), color, line_width)
+    cv2.line(img, (box_3d[7][0], box_3d[7][1]), (box_3d[5][0],box_3d[5][1]), color, line_width)
 
     for i in range(0,7,2):
         #Horizonal lines
-        cv2.line(img, (box_3d[i][0], box_3d[i][1]), (box_3d[i+1][0],box_3d[i+1][1]), cv_colors.MINT.value, line_width)
+        cv2.line(img, (box_3d[i][0], box_3d[i][1]), (box_3d[i+1][0],box_3d[i+1][1]), color, line_width)
     # cv2.line(img, (box_3d[0][0], box_3d[0][1]), (box_3d[1][0],box_3d[1][1]), cv_colors.PURPLE.value, line_width)
     # cv2.line(img, (box_3d[2][0], box_3d[2][1]), (box_3d[3][0],box_3d[3][1]), cv_colors.PURPLE.value, line_width)
     # cv2.line(img, (box_3d[4][0], box_3d[4][1]), (box_3d[5][0],box_3d[5][1]), cv_colors.MINT.value, line_width)
@@ -126,6 +125,45 @@ def plot_3d_box(img, cam_to_img, ry, dimension, center):
 
     cv2.line(img, front_mark[0], front_mark[3], cv_colors.PURPLE.value, 1)
     cv2.line(img, front_mark[1], front_mark[2], cv_colors.PURPLE.value, 1)
+
+# def plot_3d_box(img, cam_to_img, ry, dimension, center):
+
+
+
+#     R = rotation_matrix(ry)
+#     corners = create_corners(dimension, location=center, R=R)
+
+#     # to see the corners on image as purple circles
+#     # plot_3d_pts(img, corners, center,cam_to_img=cam_to_img, relative=False)
+
+#     box_3d = []
+#     for corner in corners:
+#         point = project_3d_pt(corner, cam_to_img)
+#         box_3d.append(point)
+
+#     #TODO put into loop
+#     cv2.line(img, (box_3d[0][0], box_3d[0][1]), (box_3d[2][0],box_3d[2][1]), cv_colors.MINT.value, line_width)
+#     cv2.line(img, (box_3d[4][0], box_3d[4][1]), (box_3d[6][0],box_3d[6][1]), cv_colors.MINT.value, line_width)
+#     cv2.line(img, (box_3d[0][0], box_3d[0][1]), (box_3d[4][0],box_3d[4][1]), cv_colors.MINT.value, line_width)
+#     cv2.line(img, (box_3d[2][0], box_3d[2][1]), (box_3d[6][0],box_3d[6][1]), cv_colors.MINT.value, line_width)
+
+#     cv2.line(img, (box_3d[1][0], box_3d[1][1]), (box_3d[3][0],box_3d[3][1]), cv_colors.MINT.value, line_width)
+#     cv2.line(img, (box_3d[1][0], box_3d[1][1]), (box_3d[5][0],box_3d[5][1]), cv_colors.MINT.value, line_width)
+#     cv2.line(img, (box_3d[7][0], box_3d[7][1]), (box_3d[3][0],box_3d[3][1]), cv_colors.MINT.value, line_width)
+#     cv2.line(img, (box_3d[7][0], box_3d[7][1]), (box_3d[5][0],box_3d[5][1]), cv_colors.MINT.value, line_width)
+
+#     for i in range(0,7,2):
+#         #Horizonal lines
+#         cv2.line(img, (box_3d[i][0], box_3d[i][1]), (box_3d[i+1][0],box_3d[i+1][1]), cv_colors.MINT.value, line_width)
+#     # cv2.line(img, (box_3d[0][0], box_3d[0][1]), (box_3d[1][0],box_3d[1][1]), cv_colors.PURPLE.value, line_width)
+#     # cv2.line(img, (box_3d[2][0], box_3d[2][1]), (box_3d[3][0],box_3d[3][1]), cv_colors.PURPLE.value, line_width)
+#     # cv2.line(img, (box_3d[4][0], box_3d[4][1]), (box_3d[5][0],box_3d[5][1]), cv_colors.MINT.value, line_width)
+#     # cv2.line(img, (box_3d[6][0], box_3d[6][1]), (box_3d[7][0],box_3d[7][1]), cv_colors.MINT.value, line_width)
+
+#     front_mark = [(box_3d[i][0], box_3d[i][1]) for i in range(4)]
+
+#     cv2.line(img, front_mark[0], front_mark[3], cv_colors.PURPLE.value, 1)
+#     cv2.line(img, front_mark[1], front_mark[2], cv_colors.PURPLE.value, 1)
 
 def plot_2d_box(img, box_2d):
     # create a square from the corners
@@ -137,19 +175,35 @@ def plot_2d_box(img, box_2d):
     cv2.line(img, pt3, pt4, cv_colors.BLUE.value, 2)
     cv2.line(img, pt4, pt1, cv_colors.BLUE.value, 2)
 
-def plot_regressed_3d_bbox(img, cam_to_img, box_2d, dimensions, alpha, theta_ray, img_2d=None):
+
+def plot_regressed_3d_bbox(img, cam_to_img, box_2d, dimensions, alpha, theta_ray, img_2d=None, color = cv_colors.YELLOW.value, location = None):
 
     # the math! returns X, the corners used for constraint
-    location, X = calc_location(dimensions, cam_to_img, box_2d, alpha, theta_ray)
+    if location is None:
+        location, X = calc_location(dimensions, cam_to_img, box_2d, alpha, theta_ray)
 
     orient = alpha + theta_ray
 
     if img_2d is not None:
         plot_2d_box(img_2d, box_2d)
 
-    plot_3d_box(img, cam_to_img, orient, dimensions, location) # 3d boxes
+    plot_3d_box(img, cam_to_img, orient, dimensions, location, color) # 3d boxes
 
     return location
+
+# def plot_regressed_3d_bbox(img, cam_to_img, box_2d, dimensions, alpha, theta_ray, img_2d=None):
+
+#     # the math! returns X, the corners used for constraint
+#     location, X = calc_location(dimensions, cam_to_img, box_2d, alpha, theta_ray)
+
+#     orient = alpha + theta_ray
+
+#     if img_2d is not None:
+#         plot_2d_box(img_2d, box_2d)
+
+#     plot_3d_box(img, cam_to_img, orient, dimensions, location) # 3d boxes
+
+#     return location
 
 def plot_regressed_3d_bbox_2(img, truth_img, cam_to_img, box_2d, dimensions, alpha, theta_ray):
 
