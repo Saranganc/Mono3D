@@ -61,7 +61,7 @@ def main():
         exit()
 
     # Open input video file
-    video_in = cv2.VideoCapture('Kitti/test3.mov')
+    video_in = cv2.VideoCapture('Kitti/test1.mp4')
 
     # Get video properties
     fps = int(video_in.get(cv2.CAP_PROP_FPS))
